@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shriyan Singh - Portfolio</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1a1a1a;
+      color: #fff;
+      padding-top: 56px;
+    }
+
+    /* Navbar */
+    .navbar {
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar-nav .nav-link {
+      color: white;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #f8f9fa;
+    }
+
+    /* About Section */
+    .about-section {
+      padding: 60px 0;
+      margin-left: 50px;
+    }
+
+    .about-section h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #ff4081;
+    }
+
+    .about-section h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #ff4081;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .profile-image {
+      flex: 0 0 200px;
+      margin-right: 30px;
+    }
+
+    .flip-card {
+      width: 200px;
+      height: 200px;
+      perspective: 1000px;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #fff;
+    }
+
+    .flip-card-front img,
+    .flip-card-back img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .flip-card-back {
+      transform: rotateY(180deg);
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .skills-section {
+  padding: 60px 0;
+  margin-left: 50px;
+}
+
+.skills-section h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: #ff4081;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-gap: 30px;
+  justify-items: center;
+}
+
+.skill {
+  text-align: center;
+  position: relative;
+}
+
+.skill a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.skill img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.skill:hover img {
+  transform: scale(1.1);
+}
+
+.skill-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.skill:hover .skill-name {
+  opacity: 1;
+}
+
+    /* Projects Section */
+    .projects-section {
+      padding: 60px 0;
+      margin-left: 50px;
+    }
+
+    .projects-section h2 {
+      font-size: 32px;
+      margin-bottom: 40px;
+      color: #ff4081;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 60px 0;
+      margin-left: 50px;
+    }
+
+    .contact-section h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #ff4081;
+    }
+
+    .contact-section p {
+      margin-bottom: 20px;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    /* Media Queries */
+    @media (max-width: 992px) {
+      .navbar-collapse {
+        background-color: #343a40;
+      }
+    }
+
+      /* Additional CSS for Projects Section */
+    .projects-section h2 {
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    }
+    .card {
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Adds a subtle shadow around the card */
+    }
+    .card-img-top {
+    max-height: 180px; /* Adjust this value to fit the image properly in the card */
+    object-fit: cover; /* This makes sure the image covers the area properly */
+    }
+    .card-body {
+    padding: 15px;
+    }
+    .card-title {
+    font-size: 1.25rem;
+    }
+    .card-text {
+    margin-bottom: 15px;
+    }
+
+    .skills-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.skills-list li {
+  background-color: #473e41;
+  color: white;
+  padding: 5px 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.skills-list li:last-child {
+  margin-right: 0;
+}
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#home">Shriyan Singh</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#skills">Skills</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2>About me</h2>
+      <div class="about-content">
+        <div class="profile-image">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="images/Shriyan.jpeg" alt="Profile Image">
+              </div>
+              <div class="flip-card-back">
+                <img src="images/Stellies.jpeg" alt="Profile Image">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-text">
+          <p>
+            I'm Shriyan Singh, a passionate and driven Data Science and Computer Science student at Stellenbosch University. Currently pursuing my Honours degree, I am excited about the vast potential of the Data Science industry and eager to contribute my skills to future projects.
+          </p>
+          <p>
+            Throughout my academic journey, I have developed a strong foundation in programming, data analysis, and machine learning. As a teaching assistant at Stellenbosch University, I have had the opportunity to guide and support students in their Computer Science and Machine Learning courses, further enhancing my technical skills and leadership abilities.
+          </p>
+          <p>
+            Beyond academics, I am a co-founder of Stellenbosch's first Hindu Student Society, where I served as the Students Affairs Manager. This experience has honed my communication, organization, and interpersonal skills, allowing me to effectively collaborate with diverse groups of people.
+          </p>
+          <p>
+            I am constantly seeking opportunities to expand my knowledge and take on new challenges. My experiences at Stellenbosch University have fueled my passion for innovation and problem-solving using cutting-edge technologies. I am particularly interested in leveraging large datasets to uncover meaningful patterns and insights that can drive impactful solutions.
+          </p>
+        </div>
+      </div>
+      <!-- Rest of the code... -->
+    </div>
+  </section>
+  <!-- Skills Section -->
+<!-- Skills Section -->
+<section id="skills" class="skills-section">
+    <div class="container">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill">
+          <a href="#skills-tab">
+            <img src="images/python-programming-language.jpeg" alt="Python">
+            <span class="skill-name">Python</span>
+          </a>
+        </div>
+        <div class="skill">
+          <a href="#skills-tab">
+            <img src="images/java.jpeg" alt="Java">
+            <span class="skill-name">Java</span>
+          </a>
+        </div>
+        <div class="skill">
+          <a href="#skills-tab">
+            <img src="images/css.jpeg" alt="CSS">
+            <span class="skill-name">CSS</span>
+          </a>
+        </div>
+        <div class="skill">
+          <a href="#skills-tab">
+            <img src="images/html.jpeg" alt="HTML">
+            <span class="skill-name">HTML</span>
+          </a>
+        </div>
+        <div class="skill">
+          <a href="#skills-tab">
+            <img src="images/c.jpeg" alt="C">
+            <span class="skill-name">C</span>
+          </a>
+        </div>
+        <div class="skill">
+          <a href="#skills-tab">
+            <img src="images/git.jpeg" alt="Git">
+            <span class="skill-name">Git</span>
+          </a>
+        </div>
+        <div class="skill">
+            <a href="#skills-tab">
+              <img src="images/gradle.jpeg" alt="Gradle">
+              <span class="skill-name">Gradle</span>
+            </a>
+          </div>
+      </div>
+    </div>
+  </section>
+<!-- Projects Section -->
+<section id="projects" class="projects-section">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="row" id="project-cards">
+        <!-- Project cards will be dynamically added here -->
+      </div>
+      <div class="d-flex justify-content-between">
+        <button id="prev-projects-btn" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Previous</button>
+        <button id="next-projects-btn" class="btn btn-primary">Next <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </section>
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <h2>Contact</h2>
+      <p>You can reach me at shriyansingh@example.com</p>
+      <div class="social-icons">
+        <!-- Social media icons and links will be added here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS and dependencies (jQuery and Popper) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/your-font-awesome-kit.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
